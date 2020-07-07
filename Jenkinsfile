@@ -14,7 +14,7 @@ pipeline {
         sh 'npm config set https-proxy http://10.93.74.95:3128'
         sh 'npm config set proxy http://10.93.74.95:3128'
         sh 'npm config set strict-ssl false'
-        sh 'npm ci --verbose'
+        sh 'npm i --verbose'
         sh 'npm run cy:verify'
       }
     }
