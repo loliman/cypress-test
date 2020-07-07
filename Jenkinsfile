@@ -1,24 +1,37 @@
 pipeline {
   agent {
     docker {
-      image 'cypress/base:10.0.0'
+      image 'cypress/base:10'
     }
   }
-  
+
   stages {
     stage('build') {
-      environment {
-        HOME = "."
-      }
       steps {
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
-        timeout(time: 5, unit: 'MINUTES') {
-          nodejs(nodeJSInstallationName: 'Node 10.4.1', configId: 'npm') {
-            sh 'npm ci'
-            sh 'npm run cy:verify'
+        sh 'npm ci'
+        sh 'npm run cy:verify'
+      }
+    }
+
+    stage('cypress parallel tests') {
+      // https://jenkins.io/doc/book/pipeline/syntax/#parallel
+      parallel {
+        stage('tester A') {
+          steps {
+            echo "Running build ${env.BUILD_ID}"
+            sh "npm run cy:run"
+          }
+        }
+
+        stage('tester B') {
+          steps {
+            echo "Running build ${env.BUILD_ID}"
+            sh "npm run cy:run"
           }
         }
       }
+
     }
   }
 }
