@@ -6,9 +6,18 @@ pipeline {
   }
   
   stages {
-    stage('test') {
+    stage('build') {
+      environment {
+        HOME = "."
+      }
       steps {
-        echo "test"
+        echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
+        timeout(time: 5, unit: 'MINUTES') {
+          nodejs(nodeJSInstallationName: 'Node 10.4.1', configId: 'npm') {
+            sh 'npm ci'
+            sh 'npm run cy:verify'
+          }
+        }
       }
     }
   }
