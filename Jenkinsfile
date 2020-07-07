@@ -7,10 +7,7 @@ pipeline {
 
   stages {
     stage('build') {
-      environment {
-        HTTP_PROXY = "http://proxy-de.glb.my-it-solutions.net:84/"
-        HTTPS_PROXY = "http://proxy-de.glb.my-it-solutions.net:84/"
-      }
+
 
       steps {
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
