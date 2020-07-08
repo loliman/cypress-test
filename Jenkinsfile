@@ -11,7 +11,6 @@ pipeline {
         stage('Stage A') {
           steps {
             echo "Running build ${env.BUILD_ID} on stage A"
-            sh "npm run cy:verify"
             sh "npm run cy:run"
           }
         }
@@ -19,7 +18,6 @@ pipeline {
         stage('Stage B') {
           steps {
             echo "Running build ${env.BUILD_ID} on stage B"
-            sh "npm run cy:verify"
             sh "npm run cy:run"
           }
         }
