@@ -6,6 +6,10 @@ pipeline {
   }
 
   stages {
+    environment {
+      CYPRESS_CACHE_FOLDER = '/root/.cache/Cypress'
+    }
+
     stage('cypress parallel tests') {
       parallel {
         stage('tester A') {
