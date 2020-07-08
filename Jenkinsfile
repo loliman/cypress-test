@@ -12,16 +12,16 @@ pipeline {
       }
       
       parallel {
-        stage('tester A') {
+        stage('Stage A') {
           steps {
-            echo "Running build ${env.BUILD_ID} on A"
+            echo "${username} running build ${env.BUILD_ID} on stage A"
             sh "npm run cy:run"
           }
         }
 
-        stage('tester B') {
+        stage('Stage B') {
           steps {
-            echo "Running build ${env.BUILD_ID} on B"
+            echo "${username} running build ${env.BUILD_ID} on stage B"
             sh "npm run cy:run"
           }
         }
