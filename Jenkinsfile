@@ -1,4 +1,6 @@
 pipeline {
+  agent none
+
   stages {
     stage('cypress parallel tests') {
       // https://jenkins.io/doc/book/pipeline/syntax/#parallel
