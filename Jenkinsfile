@@ -1,5 +1,7 @@
 pipeline {
-  agent none
+  agent {
+      label "linux"
+  }
 
   stages {
     stage('cypress parallel tests') {
