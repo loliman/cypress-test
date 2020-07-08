@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts
+FROM debian:stable
 
 USER root
 COPY setup.sh .

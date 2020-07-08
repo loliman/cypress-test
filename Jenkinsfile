@@ -1,22 +1,23 @@
 pipeline {
   agent {
-      label "linux"
+    docker {
+      image 'loliman/cypress:1.0'
+    }
   }
 
   stages {
     stage('cypress parallel tests') {
-      // https://jenkins.io/doc/book/pipeline/syntax/#parallel
       parallel {
         stage('tester A') {
           steps {
-            echo "Running build ${env.BUILD_ID}"
+            echo "Running build ${env.BUILD_ID} on A"
             sh "npm run cy:run"
           }
         }
 
         stage('tester B') {
           steps {
-            echo "Running build ${env.BUILD_ID}"
+            echo "Running build ${env.BUILD_ID} on B"
             sh "npm run cy:run"
           }
         }
